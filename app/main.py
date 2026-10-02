@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
-
+from .load_content import load_content
 from .database import engine, Base, get_db
 from . import models
 from .routes import users
@@ -9,6 +9,7 @@ from .routes import interactions
 from .services.engagement import detect_passive_consumption
 
 Base.metadata.create_all(bind=engine)
+load_content()
 
 app = FastAPI(
     title="Vinayoki API",
