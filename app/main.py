@@ -52,3 +52,12 @@ def get_engagement_state(
         db,
         user_id
     )
+
+@app.get("/debug-content")
+def debug_content(db=Depends(get_db)):
+    count = db.query(models.Content).count()
+
+    return {
+        "content_count": count,
+        "database": str(engine.url),
+    }
