@@ -1,21 +1,21 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from .load_content import load_content
+
 from .database import engine, Base, get_db
+from .load_content import load_content
 from . import models
-from .routes import users
-from .routes import feed
-from .routes import interactions
+from .routes import users, feed, interactions
 from .services.engagement import detect_passive_consumption
 
-Base.metadata.create_all(bind=engine)
-load_content()
+
 
 app = FastAPI(
     title="Vinayoki API",
     description="Adaptive learning and progress recommendation backend",
     version="1.0.0"
 )
+Base.metadata.create_all(bind=engine)
+load_content()
 
 app.add_middleware(
     CORSMiddleware,
