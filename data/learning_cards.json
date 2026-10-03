@@ -1,0 +1,380 @@
+[
+  {
+    "title": "SQL Injection",
+    "subject": "cybersecurity",
+    "topic": "web_security",
+    "concept": "sql_injection",
+    "skill": "web_security",
+    "difficulty": 2,
+    "ideal_time": 300,
+    "progress_value": 18,
+    "description": "Understand how SQL injection works, recognize vulnerable queries, and practice preventing the attack.",
+    "steps": [
+      {
+        "order": 1,
+        "type": "watch",
+        "title": "What is SQL Injection?",
+        "content": "SQL injection happens when untrusted user input is directly combined with a database query. An attacker can manipulate that input to change what the database executes.",
+        "duration": 45
+      },
+      {
+        "order": 2,
+        "type": "watch",
+        "title": "See the Attack",
+        "content": "Imagine a login query that combines a username directly into SQL. If the input changes the structure of the query, the attacker may bypass the intended login logic.",
+        "duration": 45
+      },
+      {
+        "order": 3,
+        "type": "solve",
+        "title": "Identify the Vulnerability",
+        "question": "Which practice creates the highest SQL injection risk?",
+        "options": "[\"Parameterized queries\", \"Directly concatenating user input into SQL\", \"Using prepared statements\", \"Validating input\"]",
+        "answer": "Directly concatenating user input into SQL",
+        "duration": 40
+      },
+      {
+        "order": 4,
+        "type": "build",
+        "title": "Fix the Query",
+        "content": "Modify the vulnerable query so that user input is handled safely.",
+        "starter_code": "query = \"SELECT * FROM users WHERE username = '\" + username + \"'\"",
+        "expected_output": "Use a parameterized query instead of string concatenation.",
+        "duration": 70
+      },
+      {
+        "order": 5,
+        "type": "solve",
+        "title": "Choose the Defense",
+        "question": "Which technique is commonly used to prevent SQL injection?",
+        "options": "[\"Parameterized queries\", \"Disabling HTTPS\", \"Increasing database size\", \"Removing indexes\"]",
+        "answer": "Parameterized queries",
+        "duration": 40
+      },
+      {
+        "order": 6,
+        "type": "build",
+        "title": "Apply the Defense",
+        "content": "You are reviewing an API that accepts a username. Describe how you would safely pass that username to a database query.",
+        "starter_code": "query = \"SELECT * FROM users WHERE username = '\" + username + \"'\"",
+        "expected_output": "Replace string concatenation with a parameterized query or prepared statement.",
+        "duration": 60
+      }
+    ]
+  },
+  {
+    "title": "Authentication vs Authorization",
+    "subject": "cybersecurity",
+    "topic": "access_control",
+    "concept": "authentication_authorization",
+    "skill": "access_control",
+    "difficulty": 1,
+    "ideal_time": 240,
+    "progress_value": 15,
+    "description": "Learn the difference between proving who you are and determining what you are allowed to access.",
+    "steps": [
+      {
+        "order": 1,
+        "type": "watch",
+        "title": "Authentication",
+        "content": "Authentication answers: Who are you? Logging in with a password, passkey, or other identity mechanism is authentication.",
+        "duration": 40
+      },
+      {
+        "order": 2,
+        "type": "watch",
+        "title": "Authorization",
+        "content": "Authorization answers: What are you allowed to do? A logged-in user may still be blocked from accessing an administrator-only resource.",
+        "duration": 40
+      },
+      {
+        "order": 3,
+        "type": "solve",
+        "title": "Pick the Status Code",
+        "question": "A user is logged in but does not have permission to access /admin. Which status code is appropriate?",
+        "options": "[\"200\", \"401\", \"403\", \"404\"]",
+        "answer": "403",
+        "duration": 35
+      },
+      {
+        "order": 4,
+        "type": "build",
+        "title": "Find the Missing Control",
+        "content": "A normal user can access GET /admin/users after successfully logging in. What should the backend check before returning the data?",
+        "starter_code": "if user.is_authenticated:\\n    return admin_users",
+        "expected_output": "Add an authorization or role check before returning administrator data.",
+        "duration": 55
+      },
+      {
+        "order": 5,
+        "type": "solve",
+        "title": "Authentication or Authorization?",
+        "question": "Checking whether a user has the admin role is an example of what?",
+        "options": "[\"Authentication\", \"Authorization\", \"Encryption\", \"Hashing\"]",
+        "answer": "Authorization",
+        "duration": 35
+      },
+      {
+        "order": 6,
+        "type": "build",
+        "title": "Secure the Endpoint",
+        "content": "Modify the endpoint logic so only administrators can access administrator data.",
+        "starter_code": "if user.is_authenticated:\\n    return admin_users",
+        "expected_output": "Check the user's role or permission before returning admin_users.",
+        "duration": 55
+      }
+    ]
+  },
+  {
+    "title": "Python Functions",
+    "subject": "python",
+    "topic": "python_basics",
+    "concept": "functions",
+    "skill": "python_basics",
+    "difficulty": 1,
+    "ideal_time": 240,
+    "progress_value": 15,
+    "description": "Understand functions, return values, and how to modify a simple Python function.",
+    "steps": [
+      {
+        "order": 1,
+        "type": "watch",
+        "title": "What is a Function?",
+        "content": "A function is a reusable block of code designed to perform a particular task. It can receive inputs and return an output.",
+        "duration": 40
+      },
+      {
+        "order": 2,
+        "type": "watch",
+        "title": "Return Values",
+        "content": "The return statement sends a value back to the code that called the function. Returning a value is different from simply printing it.",
+        "duration": 40
+      },
+      {
+        "order": 3,
+        "type": "solve",
+        "title": "Choose the Keyword",
+        "question": "Which keyword sends a value back from a Python function?",
+        "options": "[\"print\", \"return\", \"yield\", \"send\"]",
+        "answer": "return",
+        "duration": 35
+      },
+      {
+        "order": 4,
+        "type": "build",
+        "title": "Fix the Function",
+        "content": "Modify the function so it returns the sum instead of printing it.",
+        "starter_code": "def add(a, b):\\n    print(a + b)",
+        "expected_output": "def add(a, b):\\n    return a + b",
+        "duration": 55
+      },
+      {
+        "order": 5,
+        "type": "solve",
+        "title": "Predict the Result",
+        "question": "What does add(2, 3) return if the function uses return a + b?",
+        "options": "[\"2\", \"3\", \"5\", \"23\"]",
+        "answer": "5",
+        "duration": 35
+      },
+      {
+        "order": 6,
+        "type": "build",
+        "title": "Create a Greeting Function",
+        "content": "Write a function that accepts a name and returns a greeting.",
+        "starter_code": "def greet(name):\\n    # write your code here",
+        "expected_output": "The function should return a greeting containing the provided name.",
+        "duration": 55
+      }
+    ]
+  },
+  {
+    "title": "Binary Search",
+    "subject": "dsa",
+    "topic": "algorithms",
+    "concept": "binary_search",
+    "skill": "algorithms",
+    "difficulty": 2,
+    "ideal_time": 300,
+    "progress_value": 18,
+    "description": "Understand how binary search reduces the search space and practice implementing its core logic.",
+    "steps": [
+      {
+        "order": 1,
+        "type": "watch",
+        "title": "The Search Space",
+        "content": "Binary search works on sorted data. Instead of checking every element, it repeatedly divides the remaining search space in half.",
+        "duration": 50
+      },
+      {
+        "order": 2,
+        "type": "watch",
+        "title": "Why O(log n)?",
+        "content": "Each comparison removes roughly half of the remaining elements. This produces logarithmic time complexity: O(log n).",
+        "duration": 50
+      },
+      {
+        "order": 3,
+        "type": "solve",
+        "title": "Time Complexity",
+        "question": "What is the average time complexity of binary search on a sorted array?",
+        "options": "[\"O(n)\", \"O(log n)\", \"O(n²)\", \"O(1)\"]",
+        "answer": "O(log n)",
+        "duration": 40
+      },
+      {
+        "order": 4,
+        "type": "build",
+        "title": "Choose the Middle",
+        "content": "Complete the missing line used to calculate the middle index.",
+        "starter_code": "low = 0\\nhigh = len(arr) - 1\\nmid = ?",
+        "expected_output": "mid = (low + high) // 2",
+        "duration": 60
+      },
+      {
+        "order": 5,
+        "type": "solve",
+        "title": "When Can You Use It?",
+        "question": "What condition is required for standard binary search?",
+        "options": "[\"The data must be sorted\", \"The data must contain strings\", \"The array must have 10 elements\", \"The data must be random\"]",
+        "answer": "The data must be sorted",
+        "duration": 40
+      },
+      {
+        "order": 6,
+        "type": "build",
+        "title": "Fix the Search",
+        "content": "Complete the condition that moves the search to the left half when the target is smaller than the middle element.",
+        "starter_code": "if target < arr[mid]:\\n    # update high",
+        "expected_output": "high = mid - 1",
+        "duration": 60
+      }
+    ]
+  },
+  {
+    "title": "Phishing Detection",
+    "subject": "cybersecurity",
+    "topic": "social_engineering",
+    "concept": "phishing",
+    "skill": "social_engineering",
+    "difficulty": 2,
+    "ideal_time": 270,
+    "progress_value": 17,
+    "description": "Learn to identify phishing indicators and practice analyzing suspicious messages.",
+    "steps": [
+      {
+        "order": 1,
+        "type": "watch",
+        "title": "What is Phishing?",
+        "content": "Phishing is a social engineering technique where attackers impersonate trusted entities to trick people into revealing information or taking unsafe actions.",
+        "duration": 45
+      },
+      {
+        "order": 2,
+        "type": "watch",
+        "title": "Spot the Red Flags",
+        "content": "Common indicators include urgent requests, suspicious links, unexpected attachments, credential requests, unusual domains, and pressure to act immediately.",
+        "duration": 45
+      },
+      {
+        "order": 3,
+        "type": "solve",
+        "title": "Find the Strongest Signal",
+        "question": "Which is a strong phishing indicator?",
+        "options": "[\"A normal greeting\", \"An urgent request for credentials\", \"A known company logo\", \"A familiar email signature\"]",
+        "answer": "An urgent request for credentials",
+        "duration": 40
+      },
+      {
+        "order": 4,
+        "type": "build",
+        "title": "Inspect the Link",
+        "content": "You receive a message asking you to log in immediately. The displayed link says example.com but points to a different domain. What should you do?",
+        "starter_code": "displayed_domain = \"example.com\"\\nactual_domain = \"example-login-security.test\"",
+        "expected_output": "Treat the mismatch as suspicious and do not enter credentials.",
+        "duration": 55
+      },
+      {
+        "order": 5,
+        "type": "solve",
+        "title": "What Should You Verify?",
+        "question": "Before entering credentials from an unexpected message, what should you verify?",
+        "options": "[\"Only the logo\", \"The actual destination and sender\", \"The message font\", \"The email length\"]",
+        "answer": "The actual destination and sender",
+        "duration": 40
+      },
+      {
+        "order": 6,
+        "type": "build",
+        "title": "Write the Safe Action",
+        "content": "Write the safest response to a suspicious message requesting immediate password verification.",
+        "starter_code": "# Your response:\\n",
+        "expected_output": "Do not use the message link. Verify through an official channel or website.",
+        "duration": 45
+      }
+    ]
+  },
+  {
+    "title": "REST API Fundamentals",
+    "subject": "web_development",
+    "topic": "api_design",
+    "concept": "rest_api",
+    "skill": "api_design",
+    "difficulty": 1,
+    "ideal_time": 250,
+    "progress_value": 16,
+    "description": "Understand REST APIs and practice designing a simple endpoint.",
+    "steps": [
+      {
+        "order": 1,
+        "type": "watch",
+        "title": "What is an API?",
+        "content": "An API defines how software components communicate. A web API lets a client send requests to a server and receive structured responses.",
+        "duration": 45
+      },
+      {
+        "order": 2,
+        "type": "watch",
+        "title": "HTTP Methods",
+        "content": "GET commonly retrieves data, POST creates data, PUT replaces a resource, PATCH partially updates it, and DELETE removes it.",
+        "duration": 45
+      },
+      {
+        "order": 3,
+        "type": "solve",
+        "title": "Choose the Method",
+        "question": "Which HTTP method is commonly used to partially update a resource?",
+        "options": "[\"GET\", \"POST\", \"PATCH\", \"DELETE\"]",
+        "answer": "PATCH",
+        "duration": 35
+      },
+      {
+        "order": 4,
+        "type": "build",
+        "title": "Design an Endpoint",
+        "content": "Design an endpoint that returns a user's profile as JSON.",
+        "starter_code": "GET /users/{id}\\n\\n# response:\\n{}",
+        "expected_output": "Return a structured JSON object containing the user's profile information.",
+        "duration": 55
+      },
+      {
+        "order": 5,
+        "type": "solve",
+        "title": "API Response Format",
+        "question": "Which format is commonly used for REST API responses?",
+        "options": "[\"JSON\", \"MP3\", \"PNG\", \"EXE\"]",
+        "answer": "JSON",
+        "duration": 35
+      },
+      {
+        "order": 6,
+        "type": "build",
+        "title": "Create a Response",
+        "content": "Create a simple JSON response containing a user's name and skill.",
+        "starter_code": "return {\\n    # add name and skill\\n}",
+        "expected_output": "A JSON object containing fields such as name and skill.",
+        "duration": 35
+      }
+    ]
+  }
+]

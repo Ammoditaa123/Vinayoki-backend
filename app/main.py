@@ -3,10 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .database import engine, Base, get_db
 from .load_content import load_content
+from .load_learning_cards import load_learning_cards
 from . import models
-from .routes import users, feed, interactions
+from .routes import users, feed, interactions, cards, card_interactions, stats, learner_state, ml, adaptation
 from .services.engagement import detect_passive_consumption
-
 
 
 app = FastAPI(
@@ -16,6 +16,7 @@ app = FastAPI(
 )
 Base.metadata.create_all(bind=engine)
 load_content()
+load_learning_cards()
 
 app.add_middleware(
     CORSMiddleware,
@@ -28,6 +29,13 @@ app.add_middleware(
 app.include_router(users.router)
 app.include_router(feed.router)
 app.include_router(interactions.router)
+app.include_router(cards.router)
+app.include_router(cards.history_router)
+app.include_router(card_interactions.router)
+app.include_router(stats.router)
+app.include_router(learner_state.router)
+app.include_router(ml.router)
+app.include_router(adaptation.router)
 
 @app.get("/")
 def root():

@@ -16,9 +16,13 @@ FEATURES = [
     "previous_completion_rate",
     "previous_skip_rate",
     "difficulty_gap",
-    "progress_value"
+    "progress_value",
+    "mastery_score",
+    "accuracy_score",
+    "time_efficiency",
+    "build_score",
+    "attempt_count"
 ]
-
 
 # Load dataset
 df = pd.read_csv("data/interactions.csv")

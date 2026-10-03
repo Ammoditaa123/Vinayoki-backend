@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from ..database import get_db
-from ..models import Content, UserSkill, User
+from ..models import Content, UserSkill, User, LearningCard, CardProgress
 from ..services.recommender import (
     recommend_activities,
     get_recommendation_reason
@@ -42,6 +42,20 @@ def get_personalized_feed(
         return {
             "error": "User not found"
         }
+    mastered_cards = (
+        db.query(CardProgress.card_id)
+        .filter(
+            CardProgress.user_id == user_id,
+            CardProgress.mastery_score >= 0.80,
+            CardProgress.needs_revision == False
+        )
+        .all()
+    )
+
+    mastered_card_ids = {
+        card_id
+        for (card_id,) in mastered_cards
+    }
 
     recommendations = recommend_activities(
         db,
@@ -54,6 +68,9 @@ def get_personalized_feed(
     for item in recommendations:
 
         activity = item["activity"]
+
+        if activity.id in mastered_card_ids:
+            continue
 
         skill_state = db.query(UserSkill).filter(
             UserSkill.user_id == user_id,
